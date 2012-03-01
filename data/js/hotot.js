@@ -390,6 +390,22 @@ function init_hotkey() {
     hotkey.register(hotkey.calculate(74), function () {
         ui.Main.move_to_tweet("next");
     });
+
+    // 'o' to open first link of the selected tweet
+    hotkey.register(hotkey.calculate(79), function () {
+        ui.Main.on_open_link_btn_click(null, ui.Main.selected_tweet_id, null);
+    });
+    // 'u' to open people of current selected twitter
+    hotkey.register(hotkey.calculate(85), function () {
+        ui.Main.on_open_people_btn_click(null, ui.Main.selected_tweet_id, null);
+    });
+    // 'x' to close current view
+    hotkey.register(hotkey.calculate(88), function () {
+        if (ui.Slider.current != "home" && ui.Slider.current != "mentions" && ui.Slider.current != "search") {
+            ui.Main.destroy_view(ui.Main.views[ui.Slider.current])
+        }
+    });
+
     // 'g' then 'g' to move to top
     hotkey.register([ig ,ig], function () {
         ui.Main.move_to_tweet("top");
